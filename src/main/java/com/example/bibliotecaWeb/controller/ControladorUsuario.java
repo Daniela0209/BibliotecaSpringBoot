@@ -1,12 +1,15 @@
 package com.example.bibliotecaWeb.controller;
 
 
+import com.example.bibliotecaWeb.DTO.RecursosDTO;
 import com.example.bibliotecaWeb.DTO.UsuarioDTO;
 import com.example.bibliotecaWeb.service.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -27,6 +30,11 @@ public class ControladorUsuario {
             return new ResponseEntity(servicioUsuario.modificar(usuarioDTO),HttpStatus.OK);
         }
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/findAllUsuario")
+    public ResponseEntity<List<UsuarioDTO>> findAll(){
+        return new ResponseEntity(servicioUsuario.obtenerTodos(), HttpStatus.OK);
     }
 
     @DeleteMapping("/eliminarusuario/{id}")

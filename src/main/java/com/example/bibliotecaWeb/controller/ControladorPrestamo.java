@@ -51,6 +51,10 @@ public class ControladorPrestamo {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/findAllPrestamo")
+    public ResponseEntity<List<PrestamoDTO>> findAll(){
+        return new ResponseEntity(servicioPrestamo.obtenerTodos(), HttpStatus.OK);
+    }
 
     @GetMapping("/buscarIdRecurso/{idRecursos}")
     public ResponseEntity<List<PrestamoDTO>> buscarTipoRecurso(@PathVariable("idRecursos") String idRecursos) {

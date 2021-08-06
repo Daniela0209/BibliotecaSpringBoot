@@ -36,7 +36,7 @@ public class RecursosDTO {
         this.tematica = tematica;
     }
 
-    public boolean isEstado() {
+    public boolean isEstado(Boolean aTrue) {
         return estado;
     }
 

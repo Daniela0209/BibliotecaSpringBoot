@@ -14,7 +14,7 @@ public class MeansMapper {
         recursos.setIdRecursos(dto.getIdRecursos());
         recursos.setTitulo(dto.getTitulo());
         recursos.setTematica(dto.getTematica());
-        recursos.setEstado(dto.isEstado());
+        recursos.setEstado(dto.isEstado(Boolean.TRUE));
         recursos.setTipoRecurso(dto.getTipoRecurso());
         return recursos;
     }

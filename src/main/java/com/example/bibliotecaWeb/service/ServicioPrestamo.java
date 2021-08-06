@@ -2,9 +2,11 @@ package com.example.bibliotecaWeb.service;
 
 
 import com.example.bibliotecaWeb.DTO.PrestamoDTO;
+import com.example.bibliotecaWeb.DTO.UsuarioDTO;
 import com.example.bibliotecaWeb.mapper.LoanMapper;
 import com.example.bibliotecaWeb.modal.Prestamo;
 import com.example.bibliotecaWeb.modal.Recursos;
+import com.example.bibliotecaWeb.modal.Usuario;
 import com.example.bibliotecaWeb.repository.RepositorioPrestamo;
 import com.example.bibliotecaWeb.repository.RepositorioRecursos;
 import com.example.bibliotecaWeb.repository.RepositorioUsuario;
@@ -71,6 +73,10 @@ public class ServicioPrestamo {
         Prestamo prestamo = mapper.fromDTO(prestamoDTO);
         repositorioPrestamo.findById(prestamo.getIdPrestamo()).orElseThrow(() -> new RuntimeException("prestamo no encontrado"));
         return mapper.fromCollection(repositorioPrestamo.save(prestamo));
+    }
+    public List<PrestamoDTO> obtenerTodos() {
+        List<Prestamo> prestamo = (List<Prestamo>) repositorioPrestamo.findAll();
+        return mapper.fromCollectionList(prestamo);
     }
 
     public void borrar(String id) {
