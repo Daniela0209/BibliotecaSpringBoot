@@ -2,35 +2,27 @@ package com.example.bibliotecaWeb.service;
 
 import com.example.bibliotecaWeb.DTO.RecursosDTO;
 import com.example.bibliotecaWeb.modal.Recursos;
-import com.example.bibliotecaWeb.modal.Usuario;
 import com.example.bibliotecaWeb.repository.RepositorioRecursos;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
 @SpringBootTest
 public class ServicioRecursosTest {
 
-    @MockBean
+    @Mock
     private RepositorioRecursos repositorioRecursos;
 
-    @Autowired
+    @InjectMocks
     private ServicioRecursos servicioRecursos;
 
-    private Date objeDate = new Date();
-    private String strDataFormat = "hh: mm: ss a dd-MMM-aaaa";
-    private SimpleDateFormat objsDF = new SimpleDateFormat(strDataFormat);
+
 
     @Test
     @DisplayName("Recursos test")
@@ -83,18 +75,16 @@ public class ServicioRecursosTest {
         recurso1.setTipoRecurso("Libro");
 
         var recurso3 = new RecursosDTO();
-        recurso3.setIdRecursos("15");
-        recurso3.setTitulo("El diario de una ilusion");
-        recurso3.setTematica("romantica");
+        recurso3.setIdRecursos("98");
+        recurso3.setTitulo("La chica del tren");
+        recurso3.setTematica("Drama");
         recurso3.isEstado(Boolean.TRUE);
-        recurso3.setTipoRecurso("libro");
+        recurso3.setTipoRecurso("Libro");
 
         Mockito.when(repositorioRecursos.save(any())).thenReturn((recurso1));
 
         var resultado = servicioRecursos.crear(recurso3);
         Assertions.assertEquals(recurso1.getIdRecursos(), resultado.getIdRecursos());
-
-
 
     }
 }
